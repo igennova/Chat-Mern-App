@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { Link, json, useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import Logo from "../assets/logo.svg";
@@ -21,6 +21,11 @@ const Register = () => {
     draggable: true,
     theme: "dark",
   };
+  useEffect(()=>{
+    if(localStorage.getItem("chat-app-user")){
+      navigate("/")
+    }
+  },[])
   const handlesubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
@@ -34,10 +39,11 @@ const Register = () => {
       });
       if (data.status === true) {
         localStorage.setItem("chat-app-user", JSON.stringify(data.user));
+        navigate("/")
       }
       if (data.status === false) {
         toast.error(data.msg, toastOptions);
-        navigate("/")
+        
       }
     }
   };

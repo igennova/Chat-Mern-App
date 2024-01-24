@@ -13,17 +13,21 @@ const Welcome=(props)=>{
       );
     }
 const Container1 = styled.div`
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  color: white;
-    
-  // flex-direction:column;
-  img {
-    height: 15rem;
-  }
-  span {
-    color: #4e0eff;
-  }
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+color: white;
+background: black;
+flex: 7;
+
+img {
+  height: 15rem;
+}
+
+span {
+  color: #4e0eff;
+}
 `;
 export default Welcome
+

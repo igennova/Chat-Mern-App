@@ -5,6 +5,7 @@ import axios from "axios";
 import { alluserroute } from "../utils/Apiroute";
 import Contacts from "../components/Contacts";
 import Welcome from "../components/welcome";
+import ChatContainer from "../components/ChatCointainer";
 
 const Chat = () => {
   const navigate = useNavigate();
@@ -41,12 +42,14 @@ const Chat = () => {
 
   return (
     <Container>
+      
       <div className="container">
-        Hello Chat 
-        <Contacts contacts={contacts} currentUser={currentUser} changechat={hanadlechatchange} >
-        <Welcome  currentUser={currentUser}/>
-        </Contacts>
-       
+      
+        
+        <Contacts contacts={contacts} currentUser={currentUser} changechat={hanadlechatchange}/>
+        {currentchat===undefined ? (<Welcome/>) :
+          (<ChatContainer currentchat={currentchat}/>)
+        }
       </div>
 
     </Container>
@@ -57,22 +60,18 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  gap: 1rem;
   align-items: center;
-  background-color: #131324;
+  background-color: #131324; /* Set a background color for the whole container */
 
   .container {
+    background-color: #green; /* Set a background color for the container */
     height: 85vh;
     width: 85vw;
-    background-color: #00000076;
-    display: grid;
-    grid-template-columns: 75% 25%;
-
-    @media screen and (min-width: 720px) and (max-width: 1080px) {
-      grid-template-columns: 35% 65%;
-    }
+    display: flex; /* Use flexbox layout */
+    flex-direction: row; /* Horizontal layout */
+    justify-content: space-between; /* Distribute space between child components */
   }
 `;
 

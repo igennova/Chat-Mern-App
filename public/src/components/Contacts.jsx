@@ -22,7 +22,7 @@ const Contacts = (props) => {
   return (
     <>
       {currentUserImage && currentUserImage && (
-        <Container>
+        <Container2>
           <div className="brand">
             <img src={Logo} alt="logo" />
             <h3>snappy</h3>
@@ -61,22 +61,23 @@ const Contacts = (props) => {
               <h2>{currentUserName}</h2>
             </div>
           </div>
-        </Container>
+        </Container2>
       )}
     </>
   );
 };
-const Container = styled.div`
-  display: grid;
-  grid-template-rows: 10% 75% 15%;
+
+const Container2 = styled.div`
+  flex: 3; /* Takes up 30% of the available space */
   overflow: hidden;
   background-color: #080420;
-  height:85vh;
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+
   .brand {
-    display: flex;
     align-items: center;
     gap: 1rem;
-    justify-content: center;
     img {
       height: 2rem;
     }
@@ -86,12 +87,12 @@ const Container = styled.div`
     }
   }
   .contacts {
-    margin-top:3rem;
-    display: flex;
-    flex-direction: column;
+    flex:8;
+    margin-top:2rem;
     align-items: center;
-    overflow: auto;
+    overflow: hidden;
     gap: 1.8rem;
+    height:100%;
     &::-webkit-scrollbar {
       width: 0.2rem;
       &-thumb {
@@ -104,13 +105,14 @@ const Container = styled.div`
       background-color: #ffffff34;
       min-height: 5rem;
       cursor: pointer;
-      width: 90%;
+      width: 100%;
       border-radius: 0.2rem;
       padding: 0.4rem;
       display: flex;
       gap: 1rem;
       align-items: center;
       transition: 0.5s ease-in-out;
+      flex:1;
       .avatar {
         img {
           height: 3rem;
@@ -129,7 +131,8 @@ const Container = styled.div`
 
   .current-user {
     background-color: #0d0d30;
-    display: flex;
+    flex:1;
+    display:flex;
     justify-content: center;
     align-items: center;
     gap: 2rem;

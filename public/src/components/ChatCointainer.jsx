@@ -6,6 +6,7 @@ import { sendmessageroute } from "../utils/Apiroute";
 import Message from "./Message";
 import axios from "axios";
 import { getallmsgRoute } from "../utils/Apiroute";
+import {v4 as uuidv4} from "uuid";
 const ChatContainer = (props) => {
   const [messages, setmessages] = useState([]);
   const [arrivalmsg,setarrivalmsg]=useState(null)
@@ -96,7 +97,7 @@ useEffect(()=>{
       </div>
       <div className="chat-messages">
         {messages.map((message, index) => (
-          <div key={message.id || index}>
+          <div key={uuidv4} ref={ScrollRef} >
             <div
               className={`${message.fromSelf ? "messagesended" : "messagereceived"}`}
             >
@@ -144,6 +145,15 @@ const Container = styled.div`
     flex-direction: column;
     gap: 1rem;
     overflow: auto;
+    &::-webkit-scrollbar {
+      width: 0.3rem;
+      &-thumb {
+        background-color: #ffffff39;
+        width: 0.1rem;
+        border-radius: 1rem;
+        margin-top:10px;
+      }
+    }
   }
 
   .messagesended {

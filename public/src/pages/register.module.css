@@ -26,7 +26,7 @@
     text-transform: uppercase;
   }
   
-  form {
+  .registerform {
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -34,7 +34,7 @@
     border-radius: 2rem;
     padding: 3rem 5rem;
   }
-  input{
+  .registerinput{
     background-color: transparent;
     padding: 1rem;
     border: 0.2rem solid #4e0eff;
@@ -47,8 +47,8 @@
       outline: none;
     }
   }
-  button{
-    background-color: #997af0;
+  .registerbutton{
+    background-color: #152fee;
     color: white;
     padding: 1rem 2rem;
     border: none;

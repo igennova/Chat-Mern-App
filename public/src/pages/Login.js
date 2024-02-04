@@ -1,11 +1,12 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { Link, json, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import Logo from "../assets/logo.svg";
-import "./register.css";
-import {loginRoute } from "../utils/Apiroute";
+import  classes  from "./register.module.css"; // Adjusted import
+import { loginRoute } from "../utils/Apiroute";
+
 const Login = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState({
@@ -19,75 +20,84 @@ const Login = () => {
     draggable: true,
     theme: "dark",
   };
-  useEffect(()=>{
-    if(localStorage.getItem("chat-app-user")){
-      navigate("/")
+
+  useEffect(() => {
+    if (localStorage.getItem("chat-app-user")) {
+      navigate("/");
     }
-  },[])
-  const handlesubmit = async (event) => {
+  }, [navigate]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
-      
       const { username, password } = values;
 
-      const { data } = await axios.post(loginRoute, {
-        username,
-        password,
-      });
-      if (data.status === true) {
-        localStorage.setItem("chat-app-user", JSON.stringify(data.user));
-        navigate("/")
+      try {
+        const { data } = await axios.post(loginRoute, {
+          username,
+          password,
+        });
+
+        if (data.status === true) {
+          localStorage.setItem("chat-app-user", JSON.stringify(data.user));
+          navigate("/");
+        } else if (data.status === false) {
+          toast.error(data.msg, toastOptions);
+        }
+      } catch (error) {
+        console.error("Error during login:", error);
+        toast.error("An unexpected error occurred", toastOptions);
       }
-      if (data.status === false) {
-        toast.error(data.msg, toastOptions);
-        
-      }
-      
     }
   };
+
   const handleValidation = () => {
     const { username, password } = values;
-    
-     if (username.length==="") {
-      toast.error("Username Required", toastOptions);
+
+    if (username.trim() === "") {
+      toast.error("Username is required", toastOptions);
       return false;
-    } else if (password.length === "") {
-      toast.error("Password is Required", toastOptions);
+    } else if (password.trim() === "") {
+      toast.error("Password is required", toastOptions);
       return false;
-    } 
+    }
+
     return true;
   };
-  const handlechange = (event) => {
+
+  const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
+
   return (
     <Fragment>
-      <div className="formcontainer">
-        <form onSubmit={handlesubmit}>
-          <div className="brand">
+      <div className={classes.formcontainer}> {/* Changed class name */}
+        <form onSubmit={handleSubmit} className={classes.registerform}>
+          <div className={classes.brand}> {/* Changed class name */}
             <img src={Logo} alt="Logo"></img>
             <h1>SONIC</h1>
           </div>
 
           <input
+          className={classes.registerinput}
             type="text"
             placeholder="Username"
             name="username"
-            onChange={handlechange}
-            min="3"
+            onChange={handleChange}
+            minLength="3"
           />
-         
+
           <input
+          className={classes.registerinput}
             type="password"
             placeholder="Password"
             name="password"
-            onChange={handlechange}
+            onChange={handleChange}
           />
-        
-          
-          <button type="submit">Log In</button>
+
+          <button type="submit" className={classes.registerbutton }>Log In</button>
           <span>
-            Don't have Account ? <Link to="/register">Register</Link>
+            Don't have an account? <Link to="/register">Register</Link>
           </span>
         </form>
       </div>

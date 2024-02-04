@@ -6,7 +6,7 @@ const Welcome=(props)=>{
         <Container1>
           <img src={robot} alt="" />
           <h1>
-            {/* Welcome, <span>{props.currenuser}!</span> */}
+            {/* Welcome, <span>{props.currentUser.username}!</span> */}
           </h1>
           <h3>Please select a chat to Start messaging.</h3>
         </Container1>

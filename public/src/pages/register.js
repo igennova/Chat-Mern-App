@@ -4,7 +4,7 @@ import { Link,  useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import Logo from "../assets/logo.svg";
-import "./register.css";
+import classes from "./register.module.css";
 import { registerRoute } from "../utils/Apiroute";
 const Register = () => {
   const navigate = useNavigate();
@@ -72,38 +72,42 @@ const Register = () => {
   };
   return (
     <Fragment>
-      <div className="formcontainer">
-        <form onSubmit={handlesubmit}>
-          <div className="brand">
+      <div className={classes.formcontainer}>
+        <form  className={classes.registerform}onSubmit={handlesubmit}>
+          <div className={classes.brand}>
             <img src={Logo} alt="Logo"></img>
             <h1>SONIC</h1>
           </div>
 
           <input
+          className={classes.registerinput}
             type="text"
             placeholder="Username"
             name="username"
             onChange={handlechange}
           />
           <input
+          className={classes.registerinput}
             type="email"
             placeholder="email"
             name="email"
             onChange={handlechange}
           />
           <input
+          className={classes.registerinput}
             type="password"
             placeholder="Password"
             name="password"
             onChange={handlechange}
           />
           <input
+          className={classes.registerinput}
             type="password"
             placeholder=" Confirm password"
             name="confirmPassword"
             onChange={handlechange}
           />
-          <button type="submit">CREATE NEW USER</button>
+          <button type="submit" className={classes.registerbutton}>CREATE NEW USER</button>
           <span>
             Already have a id <Link to="/login">Login</Link>
           </span>

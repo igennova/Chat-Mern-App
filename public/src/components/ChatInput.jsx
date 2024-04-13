@@ -55,16 +55,13 @@ const sendChat=(event)=>{
 
 const Container = styled.div`
   position: fixed;
-  overflow:hidden;
   bottom:50px;
   width:60%;
   display: grid;
   align-items: center;
   grid-template-columns: 5% 95%;
   background-color: #080420;
-  padding-top:2px;
-  z-index:1;
-
+  
   @media screen and (min-width: 720px) and (max-width: 1080px) {
     padding: 0 1rem;
     gap: 1rem;

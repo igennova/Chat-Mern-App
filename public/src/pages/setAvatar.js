@@ -94,7 +94,7 @@ const SetAvatar = () => {
                 );
               })}
             </div>
-            <button onClick={setProfilePicture}>Set as Profile Pic</button>
+            <button  onClick={setProfilePicture} className="button-setavatar">Set as Profile Pic</button>
           </>
         )}
       </div>

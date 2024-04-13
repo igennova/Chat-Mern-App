@@ -30,6 +30,22 @@
         height: 6rem;
         width: 5rem } 
 }
+.button-setavatar{
+    background-color: #152fee;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: 0.5s ease-in-out;
+    &:hover{
+      background-color:#4e0eff ;
+    }
+
+}
 
 
 .selected{

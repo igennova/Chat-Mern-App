@@ -90,7 +90,7 @@ const Container2 = styled.div`
     flex:8;
     margin-top:2rem;
     align-items: center;
-    overflow: hidden;
+    overflow: scroll;
     gap: 1.8rem;
     height:100%;
     &::-webkit-scrollbar {
